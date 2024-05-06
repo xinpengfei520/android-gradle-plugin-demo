@@ -1,43 +1,31 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.kotlin.android)
-}
-
-android {
-    namespace = "com.xpf.android.gradle.plugin"
-    compileSdk = 34
-
-    defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+    `kotlin-dsl`
+    `java-gradle-plugin`
+    `maven-publish`
 }
 
 dependencies {
+    //compileOnly(gradleApi())
+    //compileOnly(libs.plugins.jetbrains.kotlin.android)
+    compileOnly(libs.gradle)
+}
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+gradlePlugin {
+    plugins {
+        create("plugin") {
+            id = "com.github.xinpengfei520.XGradlePlugin"
+            implementationClass = "XGradlePlugin"
+        }
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.xinpengfei520"
+            artifactId = "XGradlePlugin"
+            version = "1.0"
+            from(components["java"])
+        }
+    }
 }
