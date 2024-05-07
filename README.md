@@ -28,3 +28,8 @@ android gradle plugin practice.
 - [Gradle plugins Portal](https://plugins.gradle.org/)
 - [Maven Central Repository](https://central.sonatype.com/)
 - [Google Maven Repository](https://maven.google.com/web/index.html)
+
+## Thanks
+
+- [https://github.com/yechaoa/GradleX](https://github.com/yechaoa/GradleX)
+- [https://github.com/Flywith24/Android-Detail/tree/master/version](https://github.com/Flywith24/Android-Detail/tree/master/version)
